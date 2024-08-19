@@ -1,0 +1,159 @@
+<html>
+<head>
+    <title>REGISTRATION FORM</title>
+    <style>
+        .grid{
+            display:grid;
+            grid-template-columns:35% 75%;
+        }
+        .error {
+            color: red;
+        }
+        input[type=text], input[type=date]{
+            padding: 10px;
+            width:30%;
+        }
+        input[type=radio],select{
+            padding: 10px;
+        }
+        input[type=button], input[type=submit], input[type=reset] {
+            padding: 10px;
+        }
+        .rform {
+            text-align: rigth;
+        }
+        #registrationForm {
+            color: darkcyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+    <div></div>
+    <div class="rform">
+        <form id="registrationForm" action="#" method="get">
+            <div>
+                ROLLNO<br><input type="text" id="rollno" name="rollno" placeholder="Enter Your Roll no">
+                <span class="error" id="rerror"></span>
+            </div>
+            <div>
+                NAME<br><input type="text" id="name" name="name" placeholder="Enter Your Name">
+                <span class="error" id="nerror"></span>
+            </div>
+            <div>
+                DOB<br><input type="date" id="dob" name="dob">
+                <span class="error" id="derror"></span>
+            </div>
+            <div>
+                GENDER:
+                <input type="radio" id="genderMale" name="gender" value="Male">Male
+                <input type="radio" id="genderFemale" name="gender" value="Female">Female
+                <span class="error" id="gerror"></span>
+            </div>
+            <div>
+                <br>
+                PHONE NUMBER<br><input type="text" id="phno" name="phno" placeholder="Enter Your Number">
+                <span class="error" id="perror"></span>
+            </div>
+            <div>
+                <br>
+                YEAR
+                <select id="year" name="year">
+                    <option value="1">I</option>
+                    <option value="2">II</option>
+                    <option value="3">III</option>
+                    <option value="4">IV</option>
+                </select>
+            </div>
+            <div>
+                COURSE ID<br><input type="text" id="cid" name="cid" placeholder="Enter Course ID">
+                <span class="error" id="ciderror"></span>
+            </div>
+            <div>
+                COURSE TITLE<br><input type="text" id="ctitle" name="ctitle" placeholder="Enter Course Title">
+                <span class="error" id="cterror"></span>
+            </div>
+            <div>
+                COURSE CREDIT<br><input type="text" id="ccredit" name="ccredit" placeholder="Enter Course Credit">
+                <span class="error" id="ccerror"></span>
+            </div>
+            <div>
+                DEPARTMENT<br><input type="text" id="dept" name="dept" placeholder="Enter Department">
+                <span class="error" id="depterror"></span>
+            </div>
+            <div>
+                <br>
+                <input type="reset" value="Reset">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    </div>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            let isValid = true;
+            
+            document.getElementById("rerror").textContent ="";
+            document.getElementById("nerror").textContent ="";
+            document.getElementById("derror").textContent ="";
+            document.getElementById("gerror").textContent ="";
+            document.getElementById("perror").textContent ="";
+            document.getElementById("ciderror").textContent ="";
+            document.getElementById("cterror").textContent ="";
+            document.getElementById("ccerror").textContent ="";
+            document.getElementById("depterror").textContent ="";
+
+            const rollno = document.getElementById("rollno").value;
+            const name = document.getElementById("name").value;
+            const dob = document.getElementById("dob").value;
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const phno = document.getElementById("phno").value;
+            const cid = document.getElementById("cid").value;
+            const ctitle = document.getElementById("ctitle").value;
+            const ccredit = document.getElementById("ccredit").value;
+            const dept = document.getElementById("dept").value;
+
+
+            if (rollno==""||isNaN(rollno)||rollno.length<9) {
+                document.getElementById("rerror").textContent ="Incorrect number";
+                isValid = false;
+            }
+            if (name === ""||!isNaN(name)) {
+                document.getElementById("nerror").textContent = "Incorrect Name.";
+                isValid = false;
+            }
+            if (dob === "") {
+                document.getElementById("derror").textContent = "Incorrect DOB.";
+                isValid = false;
+            }
+            if (!gender) {
+                document.getElementById("gerror").textContent = "Incorrect Gender.";
+                isValid = false;
+            }
+            if (phno === ""||!isNaN(phno)||phno.length<9||phno.length>10) {
+                document.getElementById("perror").textContent = "Incorrect Phone no.";
+                isValid = false;
+            }
+            if (cid === ""||!/^[a-zA-Z]{2}\d{5}$/.test(cid)){
+                document.getElementById("ciderror").textContent = "Incorrect Course Id.";
+                isValid = false;
+            }
+            if (ctitle === ""||!isNaN(ctitle)) {
+                document.getElementById("cterror").textContent = "Incorrect Course Title.";
+                isValid = false;
+            }
+            if (ccredit === "" || isNaN(ccredit)) {
+                document.getElementById("ccerror").textContent = "Incorrect Course Credit.";
+                isValid = false;
+            }
+            if (dept === ""||!isNaN(dept)) {
+                document.getElementById("depterror").textContent = "Incorrect Department.";
+                isValid = false;
+            }
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
