@@ -1,0 +1,182 @@
+<html>
+<head>
+    <title>REGISTRATION FORM</title>
+    <style>
+        .grid{
+            display:grid;
+            grid-template-columns:35% 75%;
+        }
+        .error {
+            color: red;
+        }
+        input[type=text], input[type=date],input[type=number],input[type=email]{
+            padding: 10px;
+            width:30%;
+        }
+        input[type=radio],select{
+            padding: 10px;
+        }
+        input[type=button], input[type=submit], input[type=reset] {
+            padding: 10px;
+        }
+        .rform {
+            text-align: rigth;
+        }
+        #registrationForm {
+            color: darkcyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+    <div></div>
+    <div class="rform">
+        <form id="registrationForm" action="Test" method="get">
+            <div>
+                ROLLNO<br><input type="number" id="rollno" name="rollno" placeholder="Enter Your Roll no">
+                <span class="error" id="rerror"></span>
+            </div>
+            <div>
+                NAME<br><input type="text" id="name" name="name" placeholder="Enter Your Name">
+                <span class="error" id="nerror"></span>
+            </div>
+            <div>
+                GENDER:
+                <input type="radio" id="genderMale" name="gender" value="Male">Male
+                <input type="radio" id="genderFemale" name="gender" value="Female">Female
+                <span class="error" id="gerror"></span>
+            </div>
+            <div>
+                <br>
+                YEAR
+                <select id="year" name="year">
+                    <option value="1">I</option>
+                    <option value="2">II</option>
+                    <option value="3">III</option>
+                    <option value="4">IV</option>
+                </select>
+            </div>
+            <div>
+                DEPARTMENT<br><input type="text" id="dept" name="dept" placeholder="Enter Department">
+                <span class="error" id="depterror"></span>
+            </div>
+            <div>
+                SECTION<br><input type="text" id="sec" name="sec" placeholder="Enter Section">
+                <span class="error" id="secerror"></span>
+            </div>
+            <div>
+                <br>
+                PHONE NUMBER<br><input type="text" id="phno" name="phno" placeholder="Enter Your Number">
+                <span class="error" id="perror"></span>
+            </div> 
+            <div>
+                ADDRESS<br><input type="text" id="address" name="address" placeholder="Enter Your Address">
+                <span class="error" id="adderror"></span>
+            </div>
+            <div>
+                COUNTRY<br><input type="text" id="country" name="country" placeholder="Enter Your Country">
+                <span class="error" id="countryerror"></span>
+            </div>
+            <div>
+                CITY<br><input type="text" id="city" name="city" placeholder="Enter Your City">
+                <span class="error" id="cityerror"></span>
+            </div>
+            
+            <div>
+                PINCODE<br><input type="number" id="pincode" name="pincode" placeholder="Enter Your PINCODE">
+                <span class="error" id="pinerror"></span>
+            </div> 
+            <div>
+                EMAIL<br><input type="text" id="email" name="email" placeholder="Enter Your Email">
+                <span class="error" id="emailerror"></span>
+            </div>        
+            
+            <div>
+                <br>
+                <input type="reset" value="Reset">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    </div>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            let isValid = true;
+            
+            document.getElementById("rerror").textContent ="";
+            document.getElementById("nerror").textContent ="";
+            document.getElementById("gerror").textContent ="";
+            document.getElementById("depterror").textContent ="";
+            document.getElementById("secerror").textContent ="";
+            document.getElementById("perror").textContent ="";
+            document.getElementById("emailerror").textContent ="";
+            document.getElementById("adderror").textContent ="";
+            document.getElementById("countryerror").textContent ="";
+            document.getElementById("cityerror").textContent ="";
+            document.getElementById("pinerror").textContent ="";
+
+            const rollno = document.getElementById("rollno").value;
+            const name = document.getElementById("name").value;
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const dept = document.getElementById("dept").value;
+            const sec= document.getElementById("sec").value;
+            const phno = document.getElementById("phno").value;
+            const email = document.getElementById("email").value;
+            const address = document.getElementById("address").value;
+            const country = document.getElementById("country").value;
+            const city = document.getElementById("city").value;
+            const pincode = document.getElementById("pincode").value;
+
+
+            if (rollno==""||isNaN(rollno)||rollno.length<9) {
+                document.getElementById("rerror").textContent ="Incorrect number";
+                isValid = false;
+            }
+            if (name === ""||!isNaN(name)) {
+                document.getElementById("nerror").textContent = "Incorrect Name.";
+                isValid = false;
+            }
+            if (dept === ""||!isNaN(dept)) {
+                document.getElementById("depterror").textContent = "Incorrect Department.";
+                isValid = false;
+            }
+            if ( sec=== ""||!isNaN(sec)) {
+                document.getElementById("secerror").textContent = "Incorrect Section.";
+                isValid = false;
+            }
+            if (!gender) {
+                document.getElementById("gerror").textContent = "Select Gender.";
+                isValid = false;
+            }
+            if (phno === ""||phno.length!=10) {
+                document.getElementById("perror").textContent = "Incorrect Phone no.";
+                isValid = false;
+            }
+            if (email=== ""||!email.include("@")||!email.include(".")){
+                document.getElementById("emailerror").textContent = "Incorrect Email.";
+                isValid = false;
+            }
+            if (address=== "") {
+                document.getElementById("adderror").textContent = "Incorrect Address.";
+                isValid = false;
+            }
+            if (country=== "") {
+                document.getElementById("countryerror").textContent = "Incorrect Country.";
+                isValid = false;
+            }
+            if (city=== "") {
+                document.getElementById("cityerror").textContent = "Incorrect City.";
+                isValid = false;
+            }
+            if (pincode=== ""||isNaN(pincode)) {
+                document.getElementById("pinerror").textContent = "Incorrect Pincode.";
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

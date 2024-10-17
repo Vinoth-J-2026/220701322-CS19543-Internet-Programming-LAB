@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JDBC</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div>
+<h1>LIBRARY MANAGEMENT SYSTEM</h1>
+</div>
+
+<div class=grid>
+
+<div class="insert_form">
+	<form id="jdbc" action="Connect" method="post">
+		<h3>Insert Book</h3>
+		Book Name:<br><input type="text" name="book_name" placeholder="Enter Book name"><span class="error" id="nerror"></span><br>
+		Book Author:<br><input type="text" name="book_author" placeholder="Enter Book author"><span class="error" id="aerror"></span><br>
+		Book Publisher:<br><input type="text" name="book_publisher" placeholder="Enter Book publisher"><span class="error" id="puerror"></span><br>
+		Book Edition:<br><input type="text" name="book_edition" placeholder="Enter Book edition"><span class="error" id="eerror"></span><br>
+		Book Price:<br><input type="text" name="book_price" placeholder="Enter Book price"><span class="error" id="perror"></span><br>
+		Book Category:<br><input type="text" name="book_category" placeholder="Enter Book category"><span class="error" id="cerror"></span><br>
+		<br>
+		<input type="submit">
+		<input type="reset">
+	</form>
+</div>
+
+<div class="viewBook">
+<form id="view" action="View" method="post">
+		<h3>View Book</h3>
+		Book Name:<br><input type="text" name="viewBook" placeholder="Enter Book Name"><br>
+		<input type="submit" value="View">
+</form>
+</div>
+<div class="delete">
+<form id="delete" action="Delete" method="post">
+	<h3>Delete Book</h3>
+	Book Name:<br><input type="text" name="deleteBook" placeHolder="Enter Book Name"><br>
+	<input type="submit" value="Delete">
+</form>
+</div>
+
+<div class="update">
+<form id="update_form" action="Update" method="post">
+		<h3>Update Book</h3>
+		Book Name<br><input type="text" name="bookName" placeholder="Enter BookName"><br>
+		Update Field<br><select name="updateCol"> 
+		<option value="book_name">Book Name</option>
+		<option value="author">author</option>
+		<option value="publisher">publisher</option>
+		<option value="edition">edition</option>
+		<option value="price">price</option>
+		<option value="category">category</option>
+		</select><br>
+		Update Value<br><input type="text" name="updateVal" placeholder="Enter Value">
+		<br>
+		<input type="submit">
+		<input type="reset">
+</form>
+</div>
+
+</div>
+<script>
+	document.getElementById("jdbc").addEventListener("submit", function(event){
+		let isvalid = true;
+		document.getElementById("nerror").textContent = "";
+		document.getElementById("aerror").textContent = "";
+		document.getElementById("puerror").textContent = "";
+		document.getElementById("eerror").textContent = "";
+		document.getElementById("perror").textContent = "";
+		document.getElementById("cerror").textContent = "";
+
+		var b_name = jdbc.book_name.value;
+		var b_author = jdbc.book_author.value;
+		var b_publisher = jdbc.book_publisher.value;
+		var b_edition = jdbc.book_edition.value;
+		var b_price = jdbc.book_price.value;
+		var b_category = jdbc.book_category.value;
+
+		if(b_name === ""){
+			document.getElementById("nerror").innerHTML = "Enter Book Name";
+			isvalid = false;
+		}
+		if(b_author === ""){
+			document.getElementById("aerror").innerHTML = "Enter Book Author";
+			isvalid = false;
+		}
+		if(b_publisher === ""){
+			document.getElementById("puerror").innerHTML = "Enter Book Publisher";
+			isvalid = false;
+		}
+		if(b_edition === "" || isNaN(b_edition)){
+			document.getElementById("eerror").innerHTML = "Enter a valid Book Edition";
+			isvalid = false;
+		}
+		if(b_price === "" || isNaN(b_price)){
+			document.getElementById("perror").innerHTML = "Enter a valid Book Price";
+			isvalid = false;
+		}
+		if(b_category === ""){
+			document.getElementById("cerror").innerHTML = "Enter Book Category";
+			isvalid = false;
+		}
+
+		if(!isvalid){
+			event.preventDefault();
+		}
+	});
+</script>
+</body>
+</html>

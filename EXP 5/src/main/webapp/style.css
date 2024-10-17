@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.error {
+    color: red;
+}
+input[type=text], input[type=date], input[type=number], input[type=email] {
+    padding: 10px;
+    width: 30%;
+}
+input[type=radio], select {
+    padding: 10px;
+}
+input[type=button], input[type=submit], input[type=reset] {
+    padding: 10px;
+    color: darkcyan;
+}
+#jdbc {
+    color: darkcyan;
+}
+#view {
+    color: darkcyan;
+}
+#delete {
+    color: darkcyan;
+}
+#update_form {
+    color: darkcyan;
+}
+
+h1{
+	text-align:center;
+}
+.grid {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(5, 1fr); /* 5-column layout */
+    color:darkcyan;
+}
